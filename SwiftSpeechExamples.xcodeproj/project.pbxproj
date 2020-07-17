@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		EE2DEC4B24C121AC002ACC10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3624C121AB002ACC10 /* ContentView.swift */; };
 		EE2DEC4C24C121AC002ACC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2DEC3724C121AC002ACC10 /* Assets.xcassets */; };
 		EE2DEC4D24C121AC002ACC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2DEC3724C121AC002ACC10 /* Assets.xcassets */; };
+		EE2DEC5824C1222C002ACC10 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE2DEC5724C1222C002ACC10 /* SwiftSpeech */; };
+		EE2DEC5A24C1223A002ACC10 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE2DEC5924C1223A002ACC10 /* SwiftSpeech */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE2DEC5824C1222C002ACC10 /* SwiftSpeech in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE2DEC5A24C1223A002ACC10 /* SwiftSpeech in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +55,7 @@
 				EE2DEC3E24C121AC002ACC10 /* iOS */,
 				EE2DEC4524C121AC002ACC10 /* macOS */,
 				EE2DEC3D24C121AC002ACC10 /* Products */,
+				EE2DEC5624C1222C002ACC10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +95,13 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		EE2DEC5624C1222C002ACC10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,6 +118,9 @@
 			dependencies = (
 			);
 			name = iOS;
+			packageProductDependencies = (
+				EE2DEC5724C1222C002ACC10 /* SwiftSpeech */,
+			);
 			productName = iOS;
 			productReference = EE2DEC3C24C121AC002ACC10 /* SwiftSpeechExamples.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +138,9 @@
 			dependencies = (
 			);
 			name = macOS;
+			packageProductDependencies = (
+				EE2DEC5924C1223A002ACC10 /* SwiftSpeech */,
+			);
 			productName = macOS;
 			productReference = EE2DEC4424C121AC002ACC10 /* SwiftSpeechExamples.app */;
 			productType = "com.apple.product-type.application";
@@ -439,6 +457,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE2DEC5724C1222C002ACC10 /* SwiftSpeech */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftSpeech;
+		};
+		EE2DEC5924C1223A002ACC10 /* SwiftSpeech */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftSpeech;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE2DEC3024C121AB002ACC10 /* Project object */;
 }

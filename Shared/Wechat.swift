@@ -79,7 +79,7 @@ extension Wechat {
         let stopRecording: () -> Void
         let cancelRecording: () -> Void
         
-        @State var activeComponent: Component? = nil
+        @State var activeComponent: Component? = .none
         @State var isRecording: Bool = false
         
         var gradient: RadialGradient {
@@ -93,35 +93,54 @@ extension Wechat {
         func content(_ proxy: GeometryProxy) -> some View {
             // `proxy.size` doesn't include bottom safe area inset.
             let halfWidth = proxy.size.width / 2.0
-            let speechPosition = CGPoint(x: halfWidth, y: proxy.size.height - speechHeight + speechRadius)
+//            let speechPosition = CGPoint(x: halfWidth, y: proxy.size.height - speechHeight + speechRadius)
+            
+            let position_speech: CGPoint = (activeComponent == .none) ?
+                CGPoint(x: halfWidth, y: proxy.size.height - 28) :
+                CGPoint(x: halfWidth, y: proxy.size.height - speechHeight + speechRadius)
+            
+            let cornerRadius_speech: CGFloat = (activeComponent == .none) ? 8.0 : speechRadius
+            
+            let size_speech: CGSize = (activeComponent == .none) ?
+                CGSize(width: proxy.size.width - 137.0, height: 40) :
+                CGSize(width: speechRadius * 2, height: speechRadius * 2)
+            
             return ZStack {
                 // The size proposed to the children of the `ZStack` includes bottom safe area.
-                Circle()
+                RoundedRectangle(cornerRadius: cornerRadius_speech, style: .circular)
                     .fill(gradient)
-                    .frame(width: speechRadius * 2, height: speechRadius * 2)
-                    .position(x: halfWidth, y: proxy.size.height - speechHeight + speechRadius)
+                    .frame(width: size_speech.width, height: size_speech.height)
                     .overlay(
-                        Circle()
+                        RoundedRectangle(cornerRadius: cornerRadius_speech, style: .circular)
                             .strokeBorder(Color(#colorLiteral(red: 0.6431372549, green: 0.6352941176, blue: 0.6470588235, alpha: 1)), lineWidth: 4.0, antialiased: true)
                             .opacity(isSpeechActive ? 1 : 0)
-                            .frame(width: speechRadius * 2, height: speechRadius * 2)
-                            .position(speechPosition)
                     )
-                
-                Image(systemName: "waveform")
-                    .font(.system(size: 23))
-                    .foregroundColor(isSpeechActive ? Color(#colorLiteral(red: 0.3843137255, green: 0.3725490196, blue: 0.3843137255, alpha: 1)) : Color(#colorLiteral(red: 0.6, green: 0.5882352941, blue: 0.6, alpha: 1)))
-                    .position(x: halfWidth, y: (proxy.size.height * 2.0 - speechHeight) / 2.0)
-                
-                cancelAndConvert(proxy)
-                
-                RoundedRectangle(cornerRadius: 16.0, style: .continuous)
-                    .fill(Color(#colorLiteral(red: 0.568627451, green: 0.8588235294, blue: 0.4156862745, alpha: 1)))
-                    .frame(height: 105)
                     .overlay(
-                        text.padding([.top, .leading], 16),
-                        alignment: .topLeading
-                    ).padding(.horizontal, 16.0)
+                        (activeComponent == .none) ?
+                            Text("Hold to Talk")
+                                .foregroundColor(.white)
+                                .font(.system(size: 17, weight: .semibold, design: .default)) :
+                            nil
+                    )
+                    .position(position_speech)
+                    
+                if activeComponent != .none {
+                    Image(systemName: "waveform")
+                        .font(.system(size: 23))
+                        .foregroundColor(isSpeechActive ? Color(#colorLiteral(red: 0.3843137255, green: 0.3725490196, blue: 0.3843137255, alpha: 1)) : Color(#colorLiteral(red: 0.6, green: 0.5882352941, blue: 0.6, alpha: 1)))
+                        .position(x: halfWidth, y: (proxy.size.height * 2.0 - speechHeight) / 2.0)
+                    
+                    cancelAndConvert(proxy).transition(offsetTransition)
+                    
+                    RoundedRectangle(cornerRadius: 16.0, style: .continuous)
+                        .fill(Color(#colorLiteral(red: 0.568627451, green: 0.8588235294, blue: 0.4156862745, alpha: 1)))
+                        .frame(height: 105)
+                        .overlay(
+                            text.padding([.top, .leading], 16),
+                            alignment: .topLeading
+                        ).padding(.horizontal, 16.0)
+                        .transition(offsetTransition)
+                }
                 
             }.drawingGroup()
             .edgesIgnoringSafeArea(.bottom)
@@ -162,6 +181,11 @@ extension Wechat {
                 .position(x: x_convert, y: y)
         }
         
+        var offsetTransition: AnyTransition {
+            AnyTransition.offset(y: 50)
+                .combined(with: AnyTransition.opacity)
+        }
+        
         var text: some View {
             (Text(recognizedText)
                 .foregroundColor(.black)
@@ -173,6 +197,9 @@ extension Wechat {
         func dragGesture(_ proxy: GeometryProxy) -> some Gesture {
             DragGesture(minimumDistance: 0)
                 .onChanged { dragValue in
+                    print("drag: changed")
+                    guard dragValue.location.y <= proxy.size.height else { return }
+                    
                     let fromComponent = activeComponent
                     let toComponent = component(under: dragValue.location, size: proxy.size)
                     withAnimation(animation) {
@@ -183,6 +210,7 @@ extension Wechat {
                         activeComponent = toComponent
                     }
                 }.onEnded { dragValue in
+                    print("drag: ended")
                     withAnimation(animation) {
                         let endComponent = component(under: dragValue.location, size: proxy.size)
                         if isRecording {

@@ -82,12 +82,30 @@ extension Wechat {
         @State var activeComponent: Component? = .none
         @State var isRecording: Bool = false
         
-        var gradient: RadialGradient {
-            if isSpeechActive {
-                return RadialGradient(gradient: Gradient(colors: [Color.white, Color(#colorLiteral(red: 0.5960784314, green: 0.5843137255, blue: 0.5960784314, alpha: 1))]), center: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, startRadius: 400, endRadius: 571)
-            } else {
-                return RadialGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.2666666667, green: 0.2549019608, blue: 0.2666666667, alpha: 1)), Color(#colorLiteral(red: 0.2666666667, green: 0.2549019608, blue: 0.2666666667, alpha: 1))]), center: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, startRadius: /*@START_MENU_TOKEN@*/5/*@END_MENU_TOKEN@*/, endRadius: /*@START_MENU_TOKEN@*/500/*@END_MENU_TOKEN@*/)
+        func speechFill(_ proxy: GeometryProxy) -> some ShapeStyle {
+            switch activeComponent {
+            case .none:
+                return LinearGradient(gradient: Gradient(colors: [Color.Wechat.textFieldBackground]), startPoint: .bottom, endPoint: .top)
+            case .speech:
+                let speechHeightIncludingSafeArea = speechHeight + proxy.safeAreaInsets.bottom
+                let startPoint = UnitPoint(x: 0.5, y: speechHeightIncludingSafeArea / speechRadius / 2.0)
+                return LinearGradient(gradient: Gradient(colors: [Color.Wechat.speechFillLight, Color.Wechat.speechFillDark]), startPoint: startPoint, endPoint: .top)
+            default:
+                return LinearGradient(gradient: Gradient(colors: [Color.Wechat.componentFillInactive]), startPoint: .bottom, endPoint: .top)
             }
+        }
+        
+        
+        func speechBorderFill(_ proxy: GeometryProxy) -> some ShapeStyle {
+            let x = (speechRadius - proxy.size.width / 2.0) / speechRadius / 2.0
+            return LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.Wechat.speechBorderLight,
+                    Color.Wechat.speechBorderDark,
+                    Color.Wechat.speechBorderLight
+                ]), startPoint: UnitPoint(x: x, y: 0.5),
+                endPoint: UnitPoint(x: 1.0 - x, y: 0.5)
+            )
         }
         
         func content(_ proxy: GeometryProxy) -> some View {
@@ -108,17 +126,16 @@ extension Wechat {
             return ZStack {
                 // The size proposed to the children of the `ZStack` includes bottom safe area.
                 RoundedRectangle(cornerRadius: cornerRadius_speech, style: .circular)
-                    .fill(gradient)
+                    .fill(speechFill(proxy))
                     .frame(width: size_speech.width, height: size_speech.height)
                     .overlay(
                         RoundedRectangle(cornerRadius: cornerRadius_speech, style: .circular)
-                            .strokeBorder(Color(#colorLiteral(red: 0.6431372549, green: 0.6352941176, blue: 0.6470588235, alpha: 1)), lineWidth: 4.0, antialiased: true)
+                            .strokeBorder(speechBorderFill(proxy), lineWidth: 4.0, antialiased: true)
                             .opacity(isSpeechActive ? 1 : 0)
-                    )
-                    .overlay(
+                    ).overlay(
                         (activeComponent == .none) ?
                             Text("Hold to Talk")
-                                .foregroundColor(.white)
+                                .foregroundColor(Color.Wechat.textFieldText)
                                 .font(.system(size: 17, weight: .semibold, design: .default)) :
                             nil
                     )
@@ -127,13 +144,13 @@ extension Wechat {
                 if activeComponent != .none {
                     Image(systemName: "waveform")
                         .font(.system(size: 23))
-                        .foregroundColor(isSpeechActive ? Color(#colorLiteral(red: 0.3843137255, green: 0.3725490196, blue: 0.3843137255, alpha: 1)) : Color(#colorLiteral(red: 0.6, green: 0.5882352941, blue: 0.6, alpha: 1)))
+                        .foregroundColor(isSpeechActive ? Color.Wechat.speechIconActive : Color.Wechat.componentIconInactive)
                         .position(x: halfWidth, y: (proxy.size.height * 2.0 - speechHeight) / 2.0)
                     
                     cancelAndConvert(proxy).transition(offsetTransition)
                     
                     RoundedRectangle(cornerRadius: 16.0, style: .continuous)
-                        .fill(Color(#colorLiteral(red: 0.568627451, green: 0.8588235294, blue: 0.4156862745, alpha: 1)))
+                        .fill(Color.Wechat.textBubble)
                         .frame(height: 105)
                         .overlay(
                             text.padding([.top, .leading], 16),
@@ -153,10 +170,10 @@ extension Wechat {
             let x_convert: CGFloat = proxy.size.width - 71.7
             let frameSideLength_cancel: CGFloat = isCancelActive ? 88 : 72
             let frameSideLength_convert: CGFloat = isConvertActive ? 88 : 72
-            let fillColor_cancel: Color = isCancelActive ? Color(#colorLiteral(red: 0.8705882353, green: 0.8588235294, blue: 0.8705882353, alpha: 1)) : Color(#colorLiteral(red: 0.262745098, green: 0.2509803922, blue: 0.262745098, alpha: 1))
-            let fillColor_convert: Color = isConvertActive ? Color(#colorLiteral(red: 0.8705882353, green: 0.8588235294, blue: 0.8705882353, alpha: 1)) : Color(#colorLiteral(red: 0.262745098, green: 0.2509803922, blue: 0.262745098, alpha: 1))
-            let overlayColor_cancel: Color = isCancelActive ? Color(#colorLiteral(red: 0.1215686275, green: 0.1058823529, blue: 0.1215686275, alpha: 1)) : Color(#colorLiteral(red: 0.6, green: 0.5882352941, blue: 0.6, alpha: 1))
-            let overlayColor_convert: Color = isConvertActive ? Color(#colorLiteral(red: 0.1215686275, green: 0.1058823529, blue: 0.1215686275, alpha: 1)) : Color(#colorLiteral(red: 0.6, green: 0.5882352941, blue: 0.6, alpha: 1))
+            let fillColor_cancel: Color = isCancelActive ? Color.Wechat.componentFillActive : Color.Wechat.componentFillInactive
+            let fillColor_convert: Color = isConvertActive ? Color.Wechat.componentFillActive : Color.Wechat.componentFillInactive
+            let overlayColor_cancel: Color = isCancelActive ? Color.Wechat.componentIconActive : Color.Wechat.componentIconInactive
+            let overlayColor_convert: Color = isConvertActive ? Color.Wechat.componentIconActive : Color.Wechat.componentIconInactive
             
             Circle()
                 .fill(fillColor_cancel)
@@ -197,9 +214,7 @@ extension Wechat {
         func dragGesture(_ proxy: GeometryProxy) -> some Gesture {
             DragGesture(minimumDistance: 0)
                 .onChanged { dragValue in
-                    print("drag: changed")
                     guard dragValue.location.y <= proxy.size.height else { return }
-                    
                     let fromComponent = activeComponent
                     let toComponent = component(under: dragValue.location, size: proxy.size)
                     withAnimation(animation) {
@@ -210,7 +225,6 @@ extension Wechat {
                         activeComponent = toComponent
                     }
                 }.onEnded { dragValue in
-                    print("drag: ended")
                     withAnimation(animation) {
                         let endComponent = component(under: dragValue.location, size: proxy.size)
                         if isRecording {
@@ -255,6 +269,23 @@ extension Wechat {
         var isCancelActive: Bool { activeComponent == .cancel }
         var isConvertActive: Bool { activeComponent == .convert }
         
+    }
+}
+
+extension Color {
+    enum Wechat {
+        static var textFieldBackground = Color("Text Field Background")
+        static var textFieldText = Color("Text Field Text")
+        static let componentFillInactive = Color("Component Fill Inactive")
+        static let componentFillActive = Color("Component Fill Active")
+        static let componentIconInactive = Color("Component Icon Inactive")
+        static let componentIconActive = Color("Component Icon Active")
+        static let speechBorderLight = Color("Speech Border Light")
+        static let speechBorderDark = Color("Speech Border Dark")
+        static let speechFillLight = Color("Speech Fill Light")
+        static let speechFillDark = Color("Speech Fill Dark")
+        static let speechIconActive = Color("Speech Icon Active")
+        static let textBubble = Color("Text Bubble")
     }
 }
 

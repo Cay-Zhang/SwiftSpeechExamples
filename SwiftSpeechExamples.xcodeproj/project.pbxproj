@@ -347,7 +347,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cayZ.SwiftSpeechExamples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftSpeechExamples;
 				PRODUCT_NAME = SwiftSpeechExamples;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -369,7 +369,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cayZ.SwiftSpeechExamples;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftSpeechExamples;
 				PRODUCT_NAME = SwiftSpeechExamples;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

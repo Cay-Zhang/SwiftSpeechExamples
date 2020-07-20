@@ -11,7 +11,24 @@ import SwiftUI
 struct SwiftSpeechExamplesApp: App {
     var body: some Scene {
         WindowGroup {
-            Wechat()
+            ContentView()
         }
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        NavigationView {
+            List {
+                NavigationLink("Wechat", destination: Wechat())
+            }.listStyle(SidebarListStyle())
+            .navigationTitle("SwiftSpeech")
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }

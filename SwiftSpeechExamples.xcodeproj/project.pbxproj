@@ -15,6 +15,12 @@
 		EE2DEC4D24C121AC002ACC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2DEC3724C121AC002ACC10 /* Assets.xcassets */; };
 		EE2DEC5824C1222C002ACC10 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE2DEC5724C1222C002ACC10 /* SwiftSpeech */; };
 		EE2DEC5A24C1223A002ACC10 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE2DEC5924C1223A002ACC10 /* SwiftSpeech */; };
+		EE9FDE5E24C8007E00D2B33A /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE5D24C8007E00D2B33A /* Basic.swift */; };
+		EE9FDE5F24C8008900D2B33A /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE5D24C8007E00D2B33A /* Basic.swift */; };
+		EE9FDE6124C800F700D2B33A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE6024C800F700D2B33A /* Colors.swift */; };
+		EE9FDE6224C800F700D2B33A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE6024C800F700D2B33A /* Colors.swift */; };
+		EE9FDE6524C801D900D2B33A /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE6424C8015500D2B33A /* List.swift */; };
+		EE9FDE6624C801D900D2B33A /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE6424C8015500D2B33A /* List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,9 @@
 		EE2DEC4424C121AC002ACC10 /* SwiftSpeechExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSpeechExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2DEC4624C121AC002ACC10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE2DEC4724C121AC002ACC10 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		EE9FDE5D24C8007E00D2B33A /* Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
+		EE9FDE6024C800F700D2B33A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		EE9FDE6424C8015500D2B33A /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +71,10 @@
 		EE2DEC3424C121AB002ACC10 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+                EE9FDE5C24C8006100D2B33A /* Easy */,
+                EE9FDE6324C8014400D2B33A /* Medium */,
+                EE9FDE6724C801FA00D2B33A /* Hard */,
 				EE2DEC3524C121AB002ACC10 /* SwiftSpeechExamplesApp.swift */,
-				EE2DEC3624C121AB002ACC10 /* WeChat.swift */,
 				EE2DEC3724C121AC002ACC10 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -100,6 +111,31 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE9FDE5C24C8006100D2B33A /* Easy */ = {
+			isa = PBXGroup;
+			children = (
+				EE9FDE5D24C8007E00D2B33A /* Basic.swift */,
+				EE9FDE6024C800F700D2B33A /* Colors.swift */,
+			);
+			path = Easy;
+			sourceTree = "<group>";
+		};
+		EE9FDE6324C8014400D2B33A /* Medium */ = {
+			isa = PBXGroup;
+			children = (
+				EE9FDE6424C8015500D2B33A /* List.swift */,
+			);
+			path = Medium;
+			sourceTree = "<group>";
+		};
+		EE9FDE6724C801FA00D2B33A /* Hard */ = {
+			isa = PBXGroup;
+			children = (
+				EE2DEC3624C121AB002ACC10 /* WeChat.swift */,
+			);
+			path = Hard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +242,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE2DEC4A24C121AC002ACC10 /* WeChat.swift in Sources */,
+				EE9FDE6124C800F700D2B33A /* Colors.swift in Sources */,
 				EE2DEC4824C121AC002ACC10 /* SwiftSpeechExamplesApp.swift in Sources */,
+				EE9FDE6524C801D900D2B33A /* List.swift in Sources */,
+				EE9FDE5E24C8007E00D2B33A /* Basic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE2DEC4B24C121AC002ACC10 /* WeChat.swift in Sources */,
+				EE9FDE6224C800F700D2B33A /* Colors.swift in Sources */,
 				EE2DEC4924C121AC002ACC10 /* SwiftSpeechExamplesApp.swift in Sources */,
+				EE9FDE6624C801D900D2B33A /* List.swift in Sources */,
+				EE9FDE5F24C8008900D2B33A /* Basic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

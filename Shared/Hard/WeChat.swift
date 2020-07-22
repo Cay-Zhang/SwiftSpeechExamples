@@ -22,8 +22,10 @@ struct WeChat: View {
             isRecognitionInProgress: model.isRecognitionInProgress,
             startRecording: startRecording,
             stopRecording: stopRecording,
-            cancelRecording: cancelRecording
-        ).automaticEnvironmentForSpeechRecognition()
+            cancelRecording: cancelRecording,
+            locale: locale
+        ).navigationTitle("WeChat")
+        .automaticEnvironmentForSpeechRecognition()
     }
     
     func startRecording() {
@@ -78,6 +80,7 @@ extension WeChat {
         let startRecording: () -> Void
         let stopRecording: () -> Void
         let cancelRecording: () -> Void
+        var locale: Locale = .current
         
         @State var activeComponent: Component? = .none
         @State var isRecording: Bool = false
@@ -190,7 +193,7 @@ extension WeChat {
                 .fill(fillColor_convert)
                 .frame(width: frameSideLength_convert, height: frameSideLength_convert)
                 .overlay(
-                    Text("En")
+                    Text(locale.languageCode?.capitalized ?? "T")
                         .foregroundColor(overlayColor_convert)
                         .font(.system(size: 23))
                         .rotationEffect(.degrees(8), anchor: .center)
@@ -204,10 +207,10 @@ extension WeChat {
         }
         
         var text: some View {
-            (Text(recognizedText)
+            (Text(recognizedText + " ")
                 .foregroundColor(.black)
             + Text(isRecognitionInProgress ? "..." : "")
-                .foregroundColor(.gray)
+                .foregroundColor(Color.black.opacity(0.3))
             ).font(.system(size: 24))
         }
         

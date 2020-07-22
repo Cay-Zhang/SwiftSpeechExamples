@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftSpeech
 
 @main
 struct SwiftSpeechExamplesApp: App {
@@ -20,7 +21,17 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink("Wechat", destination: Wechat())
+                
+                Section(header: Text("Basics")) {
+                    NavigationLink("Basic", destination: SwiftSpeech.Demos.Basic())
+                    NavigationLink("Colors", destination: SwiftSpeech.Demos.Colors())
+                    NavigationLink("List", destination: SwiftSpeech.Demos.List())
+                }
+                
+                Section(header: Text("Apps")) {
+                    NavigationLink("WeChat", destination: WeChat())
+                }
+                
             }.listStyle(SidebarListStyle())
             .navigationTitle("SwiftSpeech")
         }

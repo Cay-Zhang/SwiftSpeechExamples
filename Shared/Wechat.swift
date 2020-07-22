@@ -1,5 +1,5 @@
 //
-//  Wechat.swift
+//  WeChat.swift
 //  Shared
 //
 //  Created by Cay Zhang on 2020/7/16.
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftSpeech
 import Combine
 
-struct Wechat: View {
+struct WeChat: View {
     
     var locale: Locale = .current
     var delegate = SwiftSpeech.FunctionalComponentDelegate()
@@ -59,7 +59,7 @@ struct Wechat: View {
     
 }
 
-extension Wechat {
+extension WeChat {
     class Model: ObservableObject {
         @Published var recognizedText = ""
         @Published var isRecognitionInProgress = false
@@ -68,7 +68,7 @@ extension Wechat {
     }
 }
 
-extension Wechat {
+extension WeChat {
     struct UI: View {
         
         var recognizedText: String
@@ -291,6 +291,6 @@ extension Color {
 
 struct Wechat_Previews: PreviewProvider {
     static var previews: some View {
-        Wechat(locale: .current)
+        WeChat(locale: .current)
     }
 }

@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		EE2DEC4824C121AC002ACC10 /* SwiftSpeechExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3524C121AB002ACC10 /* SwiftSpeechExamplesApp.swift */; };
 		EE2DEC4924C121AC002ACC10 /* SwiftSpeechExamplesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3524C121AB002ACC10 /* SwiftSpeechExamplesApp.swift */; };
-		EE2DEC4A24C121AC002ACC10 /* Wechat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3624C121AB002ACC10 /* Wechat.swift */; };
-		EE2DEC4B24C121AC002ACC10 /* Wechat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3624C121AB002ACC10 /* Wechat.swift */; };
+		EE2DEC4A24C121AC002ACC10 /* WeChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3624C121AB002ACC10 /* WeChat.swift */; };
+		EE2DEC4B24C121AC002ACC10 /* WeChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3624C121AB002ACC10 /* WeChat.swift */; };
 		EE2DEC4C24C121AC002ACC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2DEC3724C121AC002ACC10 /* Assets.xcassets */; };
 		EE2DEC4D24C121AC002ACC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2DEC3724C121AC002ACC10 /* Assets.xcassets */; };
 		EE2DEC5824C1222C002ACC10 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE2DEC5724C1222C002ACC10 /* SwiftSpeech */; };
@@ -19,7 +19,7 @@
 
 /* Begin PBXFileReference section */
 		EE2DEC3524C121AB002ACC10 /* SwiftSpeechExamplesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftSpeechExamplesApp.swift; sourceTree = "<group>"; };
-		EE2DEC3624C121AB002ACC10 /* Wechat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wechat.swift; sourceTree = "<group>"; };
+		EE2DEC3624C121AB002ACC10 /* WeChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChat.swift; sourceTree = "<group>"; };
 		EE2DEC3724C121AC002ACC10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2DEC3C24C121AC002ACC10 /* SwiftSpeechExamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSpeechExamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2DEC3F24C121AC002ACC10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				EE2DEC3524C121AB002ACC10 /* SwiftSpeechExamplesApp.swift */,
-				EE2DEC3624C121AB002ACC10 /* Wechat.swift */,
+				EE2DEC3624C121AB002ACC10 /* WeChat.swift */,
 				EE2DEC3724C121AC002ACC10 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -205,7 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE2DEC4A24C121AC002ACC10 /* Wechat.swift in Sources */,
+				EE2DEC4A24C121AC002ACC10 /* WeChat.swift in Sources */,
 				EE2DEC4824C121AC002ACC10 /* SwiftSpeechExamplesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,7 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE2DEC4B24C121AC002ACC10 /* Wechat.swift in Sources */,
+				EE2DEC4B24C121AC002ACC10 /* WeChat.swift in Sources */,
 				EE2DEC4924C121AC002ACC10 /* SwiftSpeechExamplesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

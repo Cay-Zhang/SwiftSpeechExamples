@@ -43,9 +43,8 @@ struct Colors: View {
             SwiftSpeech.RecordButton()
                 .accentColor(color)
                 .swiftSpeechRecordOnHold(locale: Locale(identifier: "en_US"), animation: .spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0))
-                .onRecognize(update: $text)
+                .onRecognizeLatest(update: $text)
         }.navigationTitle("Colors")
-        .automaticEnvironmentForSpeechRecognition()
     }
 
 }

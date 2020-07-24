@@ -28,10 +28,9 @@ struct Basic: View {
                 .font(.system(size: 25, weight: .bold, design: .default))
             SwiftSpeech.RecordButton()
                 .swiftSpeechToggleRecordingOnTap(locale: self.locale, animation: .spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0))
-                .onRecognize(update: $text)
+                .onRecognizeLatest(update: $text)
             
         }.navigationTitle("Basic")
-        .automaticEnvironmentForSpeechRecognition()
     }
     
 }

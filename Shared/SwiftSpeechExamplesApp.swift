@@ -57,7 +57,9 @@ struct ContentView: View {
                     }
                 }
             }
-        }.automaticEnvironmentForSpeechRecognition()
+        }.onAppear {
+            SwiftSpeech.requestSpeechRecognitionAuthorization()
+        }
     }
     
     var localeSettings: some View {

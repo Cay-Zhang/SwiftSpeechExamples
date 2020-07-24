@@ -25,7 +25,6 @@ struct WeChat: View {
             cancelRecording: cancelRecording,
             locale: locale
         ).navigationTitle("WeChat")
-        .automaticEnvironmentForSpeechRecognition()
     }
     
     func startRecording() {

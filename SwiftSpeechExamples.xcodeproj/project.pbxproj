@@ -13,8 +13,7 @@
 		EE2DEC4B24C121AC002ACC10 /* WeChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2DEC3624C121AB002ACC10 /* WeChat.swift */; };
 		EE2DEC4C24C121AC002ACC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2DEC3724C121AC002ACC10 /* Assets.xcassets */; };
 		EE2DEC4D24C121AC002ACC10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2DEC3724C121AC002ACC10 /* Assets.xcassets */; };
-		EE2DEC5824C1222C002ACC10 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE2DEC5724C1222C002ACC10 /* SwiftSpeech */; };
-		EE2DEC5A24C1223A002ACC10 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE2DEC5924C1223A002ACC10 /* SwiftSpeech */; };
+		EE54AC1324CD5CF000606F18 /* SwiftSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = EE54AC1224CD5CF000606F18 /* SwiftSpeech */; };
 		EE9FDE5E24C8007E00D2B33A /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE5D24C8007E00D2B33A /* Basic.swift */; };
 		EE9FDE5F24C8008900D2B33A /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE5D24C8007E00D2B33A /* Basic.swift */; };
 		EE9FDE6124C800F700D2B33A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9FDE6024C800F700D2B33A /* Colors.swift */; };
@@ -42,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE2DEC5824C1222C002ACC10 /* SwiftSpeech in Frameworks */,
+				EE54AC1324CD5CF000606F18 /* SwiftSpeech in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE2DEC5A24C1223A002ACC10 /* SwiftSpeech in Frameworks */,
+                EE54AC1324CD5CF000606F18 /* SwiftSpeech in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +154,7 @@
 			);
 			name = iOS;
 			packageProductDependencies = (
-				EE2DEC5724C1222C002ACC10 /* SwiftSpeech */,
+				EE54AC1224CD5CF000606F18 /* SwiftSpeech */,
 			);
 			productName = iOS;
 			productReference = EE2DEC3C24C121AC002ACC10 /* SwiftSpeechExamples.app */;
@@ -175,7 +174,7 @@
 			);
 			name = macOS;
 			packageProductDependencies = (
-				EE2DEC5924C1223A002ACC10 /* SwiftSpeech */,
+                EE54AC1224CD5CF000606F18 /* SwiftSpeech */,
 			);
 			productName = macOS;
 			productReference = EE2DEC4424C121AC002ACC10 /* SwiftSpeechExamples.app */;
@@ -207,6 +206,9 @@
 				Base,
 			);
 			mainGroup = EE2DEC2F24C121AB002ACC10;
+			packageReferences = (
+				EE54AC1124CD5CF000606F18 /* XCRemoteSwiftPackageReference "SwiftSpeech" */,
+			);
 			productRefGroup = EE2DEC3D24C121AC002ACC10 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -500,13 +502,21 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCSwiftPackageProductDependency section */
-		EE2DEC5724C1222C002ACC10 /* SwiftSpeech */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SwiftSpeech;
+/* Begin XCRemoteSwiftPackageReference section */
+		EE54AC1124CD5CF000606F18 /* XCRemoteSwiftPackageReference "SwiftSpeech" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Cay-Zhang/SwiftSpeech.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
 		};
-		EE2DEC5924C1223A002ACC10 /* SwiftSpeech */ = {
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE54AC1224CD5CF000606F18 /* SwiftSpeech */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = EE54AC1124CD5CF000606F18 /* XCRemoteSwiftPackageReference "SwiftSpeech" */;
 			productName = SwiftSpeech;
 		};
 /* End XCSwiftPackageProductDependency section */

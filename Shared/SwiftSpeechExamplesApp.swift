@@ -34,6 +34,7 @@ struct ContentView: View {
                 Section(header: Text("Easy")) {
                     NavigationLink("Basic", destination: Basic(locale: locale))
                     NavigationLink("Colors", destination: Colors())
+                    NavigationLink("Repeater", destination: Repeater(locale: locale))
                 }
                 
                 Section(header: Text("Medium")) {

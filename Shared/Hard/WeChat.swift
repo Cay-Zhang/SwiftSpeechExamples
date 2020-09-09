@@ -40,7 +40,7 @@ struct WeChat: View {
             }
             .store(in: &model.cancelBag)
         
-        try! session.startRecording()
+        session.startRecording()
         model.isRecognitionInProgress = true
         delegate.onStartRecording(session: session)
     }
